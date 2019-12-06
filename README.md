@@ -1,5 +1,5 @@
 # Gestión de Tareas Programadas
-En este proyecto de Liferay se podrá encontrar un portlet que permitirá la gestión de las tareas programadas que tenga el sistema. Con el podremos realizar las siguientes funciones:
+En este proyecto de Liferay 6.2 ga5 se podrá encontrar un portlet que permitirá la gestión de las tareas programadas que tenga el sistema. Con el podremos realizar las siguientes funciones:
 
 * Listar las tareas programadas del sistemas y para cada una de ellas el estado en el que se encuentra. Si esta parada o en ejecución, la próxima fecha de lanzamiento, si está almacenada o en memoria.
 * Se podrá dar de alta una tarea programada especificando el portlet y la clase que contiene la lógica de negocio. A su vez se podrá indicar el tipo trigger si se ejecutará cada X milisegundo o bien por una expresión cron.
