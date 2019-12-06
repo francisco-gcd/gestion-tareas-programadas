@@ -1,0 +1,31 @@
+div.tareas-programadas-portlet .ui-dialog{
+	position: absolute;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%);
+}
+
+div.tareas-programadas-portlet .tarea-programada-tarjeta .nombre,
+div.tareas-programadas-portlet .tarea-programada-tarjeta .descripcion{
+	word-break: break-all;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}	

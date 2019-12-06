@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<faces-config 
+	version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	
+<!-- 	<lifecycle> -->
+<!-- 		<phase-listener>com.liferay.faces.util.lifecycle.DebugPhaseListener</phase-listener> -->
+<!-- 	</lifecycle> -->
+
+	<navigation-rule>
+		<from-view-id>/views/tareas-programadas/view.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>NAVIGATION_TO_TAREA_PROGRAMADA</from-outcome>
+			<to-view-id>/views/tareas-programadas/edit.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/views/tareas-programadas/edit.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>NAVIGATION_TO_LISTA_TAREAS_PROGRAMADAS</from-outcome>
+			<to-view-id>/views/tareas-programadas/view.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>

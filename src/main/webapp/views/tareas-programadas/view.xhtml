@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+
+<!-- 
+	Vista que mostrara la tabla con tareas programadas que tiene el sistema
+ -->
+<f:view
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+	<h:head>
+	    <f:metadata>
+		    <f:viewAction actionListener="#{TareasProgramadasActions.cargar}" />
+	    </f:metadata>
+	</h:head>
+	<h:body lang="es">
+		<h:form id="frm" lang="es">
+		    <f:passThroughAttribute name="autocomplete" value="off"/>
+			<p:messages id="messages" showDetail="true" closable="true" globalOnly="true"/>
+			 
+			<ul class="inline text-right">
+				<li>
+			        <div class="ui-inputgroup">
+						<p:commandButton icon="fa fa-fw fa-refresh" value="#{i18n['refresh']}" actionListener="#{TareasProgramadasActions.cargar}" update=":frm"/>
+					</div>
+				</li>
+				<li>
+			        <div class="ui-inputgroup">
+						<p:commandButton icon="fa fa-fw fa-plus" value="#{i18n['add']}" action="#{TareasProgramadasActions.nueva}" />
+					</div>
+				</li>
+			</ul>
+
+			<!-- Tabla de tareas que contiene el sistema -->
+			<p:dataGrid 
+				layout="grid" columns="2" 
+				var="tareaProgramada" value="#{TareasProgramadasView.tareasProgramadas}" 
+				paginatorPosition="bottom" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				emptyMessage="#{i18n['es.pongo.liferay.tareasprogramadas.lista-vacia']}">
+
+				<!-- 
+					Panel de la tarea programada, mostrara:
+						Nombre
+						Descripcion
+						Estado
+						Tipo de Almacenamiento
+						Fecha Ultimo lanzamiento
+						Fecha Proximo lanzamiento
+				 -->
+				<p:panelGrid layout="grid" columns="2" columnClasses="ui-g-12 ui-lg-4, ui-g-12 ui-lg-8" styleClass="tarea-programada-tarjeta">
+				 	<h:outputText value="#{i18n['es.pongo.liferay.tareasprogramadas.nombre']}"/>
+			 		<h:outputText value="#{tareaProgramada.nombre}" styleClass="nombre"/>
+	
+				 	<h:outputText value="#{i18n['es.pongo.liferay.tareasprogramadas.descripcion']}"/>
+			 		<h:outputText value="#{tareaProgramada.descripcion}" styleClass="descripcion"/>
+	
+				 	<h:outputText value="#{i18n['es.pongo.liferay.tareasprogramadas.estado']}" />
+			 		<h:outputText value="#{tareaProgramada.estado}"/>
+
+				 	<h:outputText value="#{i18n['es.pongo.liferay.tareasprogramadas.tipo-almacenamiento']}" />
+			 		<h:outputText value="#{tareaProgramada.tipoAlmacenamiento}"/>
+
+				 	<h:outputText value="#{i18n['es.pongo.liferay.tareasprogramadas.ultimo-lanzamiento']}" />
+			 		<h:outputText value="#{tareaProgramada.ultimoLanzamiento}">
+			 			<f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss" locale="es" timeZone="Europe/Madrid"/>
+			 		</h:outputText>
+	
+				 	<h:outputText value="#{i18n['es.pongo.liferay.tareasprogramadas.proximo-lanzamiento']}" />
+			 		<h:outputText value="#{tareaProgramada.proximoLanzamiento}">
+			 			<f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss" locale="es" timeZone="Europe/Madrid"/>
+			 		</h:outputText>
+				</p:panelGrid>
+				
+				<p:spacer />
+				<ul class="inline text-right">
+					<!-- Botonera de acciones para una tarea programada -->
+					<li>
+				        <div class="ui-inputgroup">
+							<p:commandButton icon="fa fa-fw fa-trash" action="#{TareasProgramadasActions.borrar}" update=":frm">
+								<f:setPropertyActionListener value="#{tareaProgramada}" target="#{TareasProgramadasView.tareaProgamada}" />
+							</p:commandButton>
+							<p:commandButton icon="fa fa-fw fa-pencil" action="NAVIGATION_TO_TAREA_PROGRAMADA">
+								<f:setPropertyActionListener value="#{tareaProgramada}" target="#{TareasProgramadasEdit.tareaProgamada}" />
+							</p:commandButton>
+							<p:commandButton icon="fa fa-fw fa-play" action="#{TareasProgramadasActions.reanudar}" update=":frm" rendered="#{tareaProgramada.estado eq 'PAUSED'}">
+								<f:setPropertyActionListener value="#{tareaProgramada}" target="#{TareasProgramadasView.tareaProgamada}" />
+							</p:commandButton>
+							<p:commandButton icon="fa fa-fw fa-pause" action="#{TareasProgramadasActions.pausar}" update=":frm" rendered="#{tareaProgramada.estado eq 'NORMAL'}">
+								<f:setPropertyActionListener value="#{tareaProgramada}" target="#{TareasProgramadasView.tareaProgamada}" />
+							</p:commandButton>
+						</div>
+					</li>
+				</ul>
+				
+			</p:dataGrid>			 
+		</h:form>
+
+		<!-- Dialogo de Carga para las acciones AJAX -->
+		<p:ajaxStatus onstart="PF('AJAXstatus').show();" onsuccess="PF('AJAXstatus').hide();" />
+		<p:dialog widgetVar="AJAXstatus" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+			<em class="fa fa-spinner fa-pulse fa-lg fa-fw" aria-hidden="true" /> <p:spacer /> <h:outputText value="#{i18n['loading']}" />
+		</p:dialog>	
+	</h:body>
+</f:view>
