@@ -17,4 +17,6 @@ cp target/gestion-tareas-programadas-1.0.0.war <servidor liferay>/deploy
 El portlet es una aplicacion de sistema que se podrá acceder desde el Panel de Control >> Configuración >> Tareas Programadas.
 
 ### Listado de tareas
-![Listado Tareas Programadas](img/listado-tareas-programadas.png)
+![Listado Tareas Programadas](/img/listado-tareas-programadas.png)
+![Nueva Tarea Programada](/img/nueva-tarea-programada.png)
+![Edición Tarea Programada](/img/ediccion-tarea-programada.png)
