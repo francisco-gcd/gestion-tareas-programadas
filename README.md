@@ -18,5 +18,7 @@ El portlet es una aplicacion de sistema que se podrá acceder desde el Panel de 
 
 ### Listado de tareas
 ![Listado Tareas Programadas](/img/listado-tareas-programadas.png)
+### Nueva tarea programada
 ![Nueva Tarea Programada](/img/nueva-tarea-programada.png)
+### Edición de tarea programada
 ![Edición Tarea Programada](/img/edicion-tarea-programada.png)
